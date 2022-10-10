@@ -1,0 +1,28 @@
+#!/usr/bin/python
+
+import os,zipfile
+import subprocess
+
+link = "https://www.dropbox.com/s/lrz3dgg8okdyc3d/TLauncher.jar?dl=1"
+folder = f'/home/{os.getlogin()}/Documents/TLauncher'
+name = "TLauncher.jar"
+try:
+    import wget
+except:
+    subprocess.check_output('pip install wget',shell=True)
+    import wget
+
+if not os.path.exists(folder):
+    os.mkdir(folder)
+    wget.download(link,f"{folder}/{name}")
+for i in os.listdir(folder):
+    if 'old' in i.lower():
+        os.remove(i)
+
+try:
+    subprocess.check_output('java -h',shell=True)
+    os.system('clear')
+except:
+    proc = subprocess.Popen(f'sudo -S apt install -y default-jre default-jdk',shell=True,stdin=subprocess.PIPE, stdout=subprocess.PIPE,stderr=subprocess.PIPE).communicate(input=b'Sudo password: \n')
+
+subprocess.Popen(f'cd {folder} && java -jar {name}',shell=True)
