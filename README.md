@@ -1,2 +1,2 @@
 # TLauncher-Installer-Linux
-It's a basic TLauncher installer for linux that is quick
+It's a basic TLauncher installer written in python
